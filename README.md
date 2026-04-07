@@ -24,6 +24,7 @@ This project detects whether a news article is real or fake using Machine Learni
 _NewsAPI, GNews API_
 
 **💡 How it Works**
+
 Fetch latest news using API
 
 Clean and preprocess text
@@ -35,5 +36,6 @@ Predict using trained ML model
 Display result (Real / Fake) on UI
 
 **🛠️ Tech Stack**
+
 Python(Pandas, NumPy), Scikit-learn, NLTK / SpaCy, Flask, Requests (for API calls)
 
