@@ -1,36 +1,389 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>VeritasFeed</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TruthLens - Automated News Authentication</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/png" href="skull-icon.png" />
 </head>
+
 <body>
+  <div class="grid-bg"></div>
+  <div class="bg-orb orb-one"></div>
+  <div class="bg-orb orb-two"></div>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>VERITAS<span class="purple">FEED</span></h1>
-
-    <div class="header-right">
-      <span id="time"></span>
-      <button onclick="toggleDark()">🌙</button>
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon">📰</div>
+      <span>TruthLens</span>
     </div>
-  </div>
 
-  <!-- INPUT BOX -->
-  <div class="input-box">
-    <input id="newsInput" placeholder="Enter news to verify..." />
-    <button onclick="verifyCustom()">VERIFY CUSTOM TEXT →</button>
-  </div>
+    <nav class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#analyze">Analyze</a>
+      <a href="#feed">Live Feed</a>
+      <a href="#mission">Mission</a>
+      <a href="#about">About</a>
+    </nav>
 
-  <!-- TICKER -->
-  <div class="ticker">
-    <div class="ticker-text" id="ticker">
-      Loading news...
+    <div class="nav-actions">
+      <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+        <span class="toggle-dot"></span>
+      </button>
+
+      <button id="openLoginBtn" class="login-btn">Login</button>
+      <button id="openSignupBtn" class="signup-btn">Sign Up</button>
     </div>
-  </div>
+  </header>
 
-  <!-- NEWS GRID -->
-  <div class="grid" id="news"></div>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">AI-Powered Analysis Live</div>
+
+        <h1>
+          Detect <span>Real</span><br />
+          and<br />
+          <strong>Fake News</strong>
+        </h1>
+
+        <p>
+          Powered by advanced AI to analyze credibility signals, classify articles,
+          and surface real-time trust insights in seconds.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#analyze" class="primary-btn">Start Analyzing</a>
+          <a href="#feed" class="secondary-btn">View Live Feed</a>
+        </div>
+      </div>
+
+      <div class="hero-preview">
+        <div class="mini-feed-card">
+          <div class="mini-line"></div>
+
+          <h3>New bipartisan infrastructure bill passes Senate 78-22</h3>
+
+          <p>Credible source patterns detected with strong factual structure.</p>
+
+          <div class="confidence-row">
+            <span>Confidence</span>
+            <b>95%</b>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill real" style="width: 95%;"></div>
+          </div>
+        </div>
+
+        <div class="mini-feed-card">
+          <div class="mini-line danger"></div>
+
+          <h3>5G towers are secretly controlling weather patterns</h3>
+
+          <p>Misinformation signals detected. Lacks trustworthy verification.</p>
+
+          <div class="confidence-row">
+            <span>Risk Score</span>
+            <b>89%</b>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill fake" style="width: 89%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="analyze-section" id="analyze">
+      <div class="section-title">
+        <span>AI Verification</span>
+
+        <h2>Analyze Any News Instantly</h2>
+
+        <p>
+          Paste a headline or full article. Your stats, XP, badges, streak,
+          leaderboard and result update live after every search.
+        </p>
+      </div>
+
+      <div class="analyze-layout">
+        <div class="analyzer-card">
+          <label for="newsInput">News Text</label>
+
+          <textarea
+            id="newsInput"
+            placeholder="Paste current news headline or article text here..."
+          ></textarea>
+
+          <button id="analyzeBtn" class="analyze-btn">
+            Analyze News
+          </button>
+
+          <div id="resultBox" class="result-box hidden">
+            <div class="result-top">
+              <span id="resultBadge">Prediction Result</span>
+              <strong id="resultLabel">--</strong>
+            </div>
+
+            <div class="confidence-row">
+              <span>Confidence</span>
+              <b id="confidenceText">0%</b>
+            </div>
+
+            <div class="progress-track">
+              <div id="confidenceBar" class="progress-fill"></div>
+            </div>
+
+            <p id="resultMessage"></p>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <h3>Analysis Summary</h3>
+
+          <p id="summaryText">
+            Your result summary will appear here after analysis.
+          </p>
+
+          <div class="summary-stats">
+            <div>
+              <b id="totalSearches">0</b>
+              <span>Searches</span>
+            </div>
+
+            <div>
+              <b id="accuracyValue">0%</b>
+              <span>Avg Confidence</span>
+            </div>
+
+            <div>
+              <b id="fakeDetected">0</b>
+              <span>Fake Detected</span>
+            </div>
+          </div>
+
+          <button id="resetStatsBtn" class="reset-btn">
+            Reset Stats
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="feed-section" id="feed">
+      <div class="feed-layout">
+        <div class="feed-main">
+          <div class="feed-controls">
+            <h3>Live News Feed</h3>
+
+            <p>
+              Search current news. Add a NewsAPI key in backend to enable real live news loading.
+            </p>
+
+            <div class="live-search-row">
+              <input
+                id="liveNewsQuery"
+                type="text"
+                placeholder="Search live news e.g. India election, NASA, sports..."
+              />
+
+              <button id="loadLiveNewsBtn">
+                Load Live News
+              </button>
+            </div>
+
+            <div class="filter-row">
+              <button class="filter-btn active" data-filter="all">All News</button>
+              <button class="filter-btn" data-filter="real">Verified Real</button>
+              <button class="filter-btn" data-filter="fake">Flagged Fake</button>
+              <button class="filter-btn" data-filter="uncertain">Uncertain</button>
+              <button class="filter-btn" data-filter="trending">Trending</button>
+            </div>
+
+            <div class="category-row">
+              <button class="category-btn active" data-category="all">All</button>
+              <button class="category-btn" data-category="science">Science</button>
+              <button class="category-btn" data-category="politics">Politics</button>
+              <button class="category-btn" data-category="tech">Tech</button>
+              <button class="category-btn" data-category="health">Health</button>
+              <button class="category-btn" data-category="world">World</button>
+            </div>
+
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Filter shown news cards..."
+            />
+          </div>
+
+          <div id="newsFeed" class="news-feed"></div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="side-card progress-card">
+            <div class="side-title">
+              <h3>Your Progress</h3>
+              <span id="analystRank">Level 1 Analyst</span>
+            </div>
+
+            <div class="level-row">
+              <b id="levelBadge">LVL 1</b>
+
+              <div class="level-track">
+                <div id="xpFill"></div>
+              </div>
+
+              <span id="xpText">0/1000 XP</span>
+            </div>
+
+            <h4>Daily Streak</h4>
+
+            <div class="streak-row">
+              <span data-day="1">M</span>
+              <span data-day="2">T</span>
+              <span data-day="3">W</span>
+              <span data-day="4">T</span>
+              <span data-day="5">F</span>
+              <span data-day="6">S</span>
+              <span data-day="0">S</span>
+            </div>
+
+            <h4>Badges</h4>
+
+            <div class="badge-grid">
+              <div id="badgeFirst" class="locked">First Step</div>
+              <div id="badgeTruth" class="locked">Truth Hunter</div>
+              <div id="badgeGuardian" class="locked">News Guardian</div>
+              <div id="badgeExpert" class="locked">Expert Analyst</div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3>Your Stats</h3>
+
+            <div class="stat-line">
+              <span>Searches</span>
+              <b id="sideSearches">0</b>
+            </div>
+
+            <div class="stat-line">
+              <span>Avg Confidence</span>
+              <b id="sideAccuracy">0%</b>
+            </div>
+
+            <div class="stat-line">
+              <span>Fake detected</span>
+              <b id="sideFakeDetected">0</b>
+            </div>
+
+            <div class="stat-line">
+              <span>Real detected</span>
+              <b id="sideRealDetected">0</b>
+            </div>
+
+            <div class="stat-line">
+              <span>Uncertain</span>
+              <b id="sideUncertainDetected">0</b>
+            </div>
+          </div>
+
+          <div class="side-card leaderboard">
+            <h3>Leaderboard</h3>
+
+            <div class="leader-row">
+              <span>You</span>
+              <b id="userXp">0 XP</b>
+            </div>
+
+            <div class="leader-row">
+              <span>Truth Finder</span>
+              <b>4,410 XP</b>
+            </div>
+
+            <div class="leader-row">
+              <span>AI Analyst</span>
+              <b>3,460 XP</b>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="info-section" id="mission">
+      <div class="section-title">
+        <span>Our Mission</span>
+
+        <h2>Fighting Misinformation With AI</h2>
+
+        <p>
+          TruthLens helps users verify news using machine learning, TF-IDF text
+          analysis, live source verification, and confidence-based prediction.
+        </p>
+      </div>
+    </section>
+
+    <section class="info-section" id="about">
+      <div class="about-card">
+        <h2>About This Project</h2>
+
+        <p>
+          Automated News Authentication is a machine learning based web app that
+          classifies news as Real, Fake, or Uncertain using text preprocessing,
+          TF-IDF vectorization, logistic regression, and optional live news API
+          verification.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>TruthLens © 2026 | Automated News Authentication</p>
+  </footer>
+  <div id="authModal" class="auth-modal hidden">
+  <div class="auth-box">
+    <button id="closeAuthBtn" class="auth-close">×</button>
+
+
+    <h2 id="authTitle">Login</h2>
+    <p id="authSubtitle">Welcome back to TruthLens</p>
+
+    <form id="authForm">
+      <div id="nameField" class="auth-field hidden">
+        <label>Full Name</label>
+        <input type="text" id="authName" placeholder="Enter your name" />
+      </div>
+
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="authEmail" placeholder="Enter your email" required />
+      </div>
+
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="authPassword" placeholder="Enter your password" required />
+      </div>
+
+      <button type="submit" id="authSubmitBtn" class="auth-submit">
+        Login
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      <span id="authSwitchText">Don't have an account?</span>
+      <button id="switchAuthBtn">Sign Up</button>
+    </p>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
