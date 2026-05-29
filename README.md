@@ -73,10 +73,6 @@ Automated-News-Authentication/
 │   ├── style.css
 │   ├── script.js
 │
-├── MODEL/
-│   ├── model.pkl
-│   ├── vectorizer.pkl
-│
 ├── NOTEBOOK/
 │   ├── fake-news.ipynb
 │
