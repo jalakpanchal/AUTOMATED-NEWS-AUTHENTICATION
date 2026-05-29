@@ -55,8 +55,10 @@ This project uses a **News API** to fetch latest headlines in real-time and runs
 ### Frontend
 - HTML  
 - CSS  
-- JavaScript  
-
+- JavaScript
+  
+### You can use the dataset from kaggle 
+-> https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
 ---
 
 ## 📂 Project Structure
