@@ -27,7 +27,7 @@ This project uses a **News API** to fetch latest headlines in real-time and runs
 
 ---
 
-## 💡 How it Works
+## 💡 How it Works?
 
 1. Fetch latest news using API  
 2. Clean and preprocess text  
